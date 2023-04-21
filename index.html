@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        class BaseUniversity {
+            public:
+            int Price = 2250;
+            
+            void holidays() {
+                cout << "winter holidays" << endl;
+            }
+             void exams() {
+                 cout << "entrance exams: " << endl; 
+             }
+             BaseUniversity(int price) {
+                 Price=price;
+             }
+             };
+             
+             class BaseUniversity2 {
+                 public:
+                 int StudentNumber;
+                 
+                 void holidays() {
+                     cout <<"summer holidays: " << endl;
+                 }
+                 void exams2() {
+                     cout << "entrance exams2: " << endl; 
+                 }
+                 BaseUniversity2(int studentNumber) {
+                     StudentNumber=studentNumber;
+                 }
+                 };
+             
+             class ChildUniversity: public BaseUniversity, public BaseUniversity2 {
+                 public:
+                 void exams3() {
+                     cout << "entrance exams3: " << endl;
+                 }
+                //  ambiguity problem
+                 void holidays() {
+                     BaseUniversity::holidays();
+                 }
+                 
+        ChildUniversity( int price, int studentNumber): BaseUniversity(price), BaseUniversity2(studentNumber){};
+             };
+             
+            
+        
+        int main()
+        {
+            ChildUniversity uni(2250,15);
+            uni.exams();
+            cout << uni.Price << endl;
+            cout << uni.StudentNumber << endl;
+            uni.exams2(); 
+            uni.exams3();
+            
+            
+            return 0;
+        }
+    </div>
+    
+</body>
+</html>
